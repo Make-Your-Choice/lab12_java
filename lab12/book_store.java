@@ -1,6 +1,8 @@
-public class book_store {
+public class book_store implements Cloneable {
 	special[] spec_offer = new special[10]; //бонусы одномерный массив
 	special[][] spec_offer1 = new special[10][10]; //бонусы двумерный массив
+	public special spec_offer2;
+	public payment_cash cash;
 	int n = 0; //размерности массивов
 	int m = 0;
 	String title; //название
@@ -10,6 +12,16 @@ public class book_store {
 	int num_stock=0; //количество в магазине
 	int popularity=0; //популярность
 	static int space_left; //статическое поле отавшееся в магазине место
+	public Object clone() {
+		try {
+			book_store clone=(book_store)super.clone();
+			clone.cash = (payment_cash)cash.clone();
+			return clone;
+		}
+		catch(CloneNotSupportedException e) {
+		}
+		return this;
+	}
 	public book_store(special spec_offer[]){ //конструктор с параметром
 		n = 2;
 		for (int i=0; i<n; i++)
@@ -17,6 +29,16 @@ public class book_store {
 			this.spec_offer[i] = spec_offer[i];
 		}
 		System.out.printf("Empty book created\n");
+	}
+	public book_store(String str1, String str2, String str3, int a, int b, int c, int d, int e, int f) {
+		this.title = str1;
+		this.author = str2;
+		this.genre = str3;
+		this.price = a;
+		this.num_stock = b;
+		this.popularity = c;
+		this.spec_offer2 = new special(d, e);
+		this.cash = new payment_cash(f);
 	}
 	public book_store(String str1, String str2, String str3, int a, int b, int c, int d, special spec_offer[]) { //конструктор с параметрами для одномерного массива
 		this.title = str1;
@@ -80,6 +102,9 @@ public class book_store {
 		num_stock = b;
 		popularity = c;
 		n = d;
+	}
+	public String toString() {
+		return "\nYour book\n\nTitle: " + title + "\nAuthor: " + author + "\nGenre: " + genre + "\nPrice: " + price + "\nNumber in stock: " + num_stock + "\nPopularity: " + popularity/* + "\Number of bonuses: " + spec_offer2.bonus_num + "\nContinuation: " + spec_offer2.continuation*/ + "\n" + spec_offer2.toString() + cash.toString() + "\n";
 	}
 	void output() { //вывод для одномерного массива
 		System.out.println("\nYour book\n");

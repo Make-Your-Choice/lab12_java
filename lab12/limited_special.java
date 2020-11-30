@@ -1,4 +1,4 @@
-public class limited_special extends special {
+public class limited_special extends special implements bonus_expansion {
 	int times_per_year;
     public limited_special(int a, int b, int c) {
 		super(a, b);
@@ -16,6 +16,12 @@ public class limited_special extends special {
         this.bonus_num -= a;
         this.times_per_year -= b;
         System.out.printf("Number of bonuses decreased on %d, times per year decreased on %d\n", a, b);
+    }
+	public void expand_bonus_num()
+    {
+        System.out.println("\nIncreasing number of bonuses");
+        this.bonus_num += 4;
+        System.out.println("Number of bonuses increased on 4");
     }
 	public void set_default() {
 		super.set_default();
