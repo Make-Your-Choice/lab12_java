@@ -1,6 +1,6 @@
 import java.util.Scanner;
 	
-public class lab11 { //основной класс
+public class lab12 { //основной класс
 
 public static boolean isParsable(String s) { //функция для проверки возможности преобразования строки в число
     try {
@@ -20,7 +20,39 @@ public static boolean isParsable(String s) { //функция для прове�
 		Scanner in = new Scanner(System.in);
 		result res = new result();
 		int a, b, c;
-		System.out.println("Input information about the 1 book\n"); //ввод информации о книге
+		int res1, res2;
+		
+		limited_special lim_offer1 = new limited_special(5, 6, 2);
+		special sp_offer1 = new special(8, 4);
+		System.out.println("\nWorking with a derivative class\n");
+		System.out.println("\nlim_offer1\n");
+		System.out.printf("%s", lim_offer1.toString());
+		System.out.println("\nsp_offer1\n");
+		System.out.printf("%s", sp_offer1.toString());
+		System.out.println("\nOverload without basic method (reducing bonus num)");
+		lim_offer1.reduce_bonus_on_num(2, 1);
+		System.out.println("\nlim_offer1\n");
+		System.out.printf("%s", lim_offer1.toString());
+		System.out.println("\nOverload with basic method (setting default val)");
+		lim_offer1.set_default();
+		System.out.println("\nlim_offer1\n");
+		System.out.printf("%s", lim_offer1.toString());
+		
+		System.out.println("\nWorking with an abstract class\n");
+		payment_cash cash1 = new payment_cash(1);
+		payment_card card1 = new payment_card(2);
+		res1 = cash1.is_accessible();
+		if(res1 == 1)
+			System.out.println("Cash pay for cash1 is accessible\n");
+		else
+			System.out.println("Cash pay for cash1 is not accessible\n");
+		res2 = card1.is_accessible();
+		if(res2 == 1)
+			System.out.println("Card pay for card1 is accessible\n");
+		else
+			System.out.println("Card pay for card1 is not accessible\n");
+		
+		/*System.out.println("Input information about the 1 book\n"); //ввод информации о книге
 		System.out.printf("Input number of specials: ");
 		n = in.nextInt();
 		special[] spec_offer1 = new special[n]; //одномерный массив
@@ -251,7 +283,7 @@ public static boolean isParsable(String s) { //функция для прове�
 		for(int i = 0; i < 2; i ++)
 		{
 			spec_offer3[i].output();
-		}
+		}*/
 	}
 }
 

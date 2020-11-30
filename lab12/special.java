@@ -1,9 +1,13 @@
 public class special {
-	int bonus_num; //число бонусов
-	int continuation; //длительность в днях
+	protected int bonus_num; //число бонусов
+	protected int continuation; //длительность в днях
 	public special() { //конструктор без параметров
 		this.bonus_num = 5;
 		this.continuation = 1;
+	}
+	public special(int a, int b) {
+		this.bonus_num = a;
+		this.continuation = b;
 	}
 	public special(int a) { //конструктор с параметром для создания массива
 		this.bonus_num = a;
@@ -23,8 +27,19 @@ public class special {
 		this.bonus_num = bonus_num - 2;
 		System.out.println("Number of bonuses decreased on 2");
 	}
+	public void reduce_bonus_on_num(int a)
+    {
+        System.out.println("\nDecreasing number of bonuses");
+        this.bonus_num -= a;
+        System.out.printf("Number of bonuses decreased on %d\n", a);
+    }
 	public void set_default() { //установка значений по умолчанию
 		this.bonus_num = 5;
-		this.continuation = 1;
+		this.continuation = 2;
 	}
+	public String toString() 
+	{
+		return "Number of bonuses: " + bonus_num + "\nContinuation: " + continuation + "\n";
+	}
+
 }
