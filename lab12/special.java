@@ -1,11 +1,11 @@
-public class special implements bonus_expansion {
+public class special implements bonus_expansion { //бонусы с поддержкой интерфейса
 	protected int bonus_num; //число бонусов
 	protected int continuation; //длительность в днях
 	public special() { //конструктор без параметров
 		this.bonus_num = 5;
 		this.continuation = 1;
 	}
-	public special(int a, int b) {
+	public special(int a, int b) { //конструктор с параметрами
 		this.bonus_num = a;
 		this.continuation = b;
 	}
@@ -27,14 +27,12 @@ public class special implements bonus_expansion {
 		this.bonus_num = bonus_num - 2;
 		System.out.println("Number of bonuses decreased on 2");
 	}
-	public void reduce_bonus_on_num(int a)
-    {
+	public void reduce_bonus_on_num(int a) { //сокращение числа бонусов на число
         System.out.println("\nDecreasing number of bonuses");
         this.bonus_num -= a;
         System.out.printf("Number of bonuses decreased on %d\n", a);
     }
-	public void expand_bonus_num()
-    {
+	public void expand_bonus_num() { //метод интерфейса
         System.out.println("\nIncreasing number of bonuses");
         this.bonus_num += 2;
         System.out.println("Number of bonuses increased on 2");
@@ -43,7 +41,7 @@ public class special implements bonus_expansion {
 		this.bonus_num = 5;
 		this.continuation = 2;
 	}
-	public String toString() 
+	public String toString() //перегрузка toString
 	{
 		return "Number of bonuses: " + bonus_num + "\nContinuation: " + continuation + "\n";
 	}

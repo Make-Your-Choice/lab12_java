@@ -29,11 +29,11 @@ public static boolean isParsable(String s) { //функция для прове�
 		System.out.printf("%s", lim_offer1.toString());
 		System.out.println("\nsp_offer1\n");
 		System.out.printf("%s", sp_offer1.toString());
-		System.out.println("\nOverload without basic method (reducing bonus num)");
+		System.out.println("\nOverload without basic method (reducing bonus num)"); //перегрузка без вызова базового метода
 		lim_offer1.reduce_bonus_on_num(2, 1);
 		System.out.println("\nlim_offer1\n");
 		System.out.printf("%s", lim_offer1.toString());
-		System.out.println("\nOverload with basic method (setting default val)");
+		System.out.println("\nOverload with basic method (setting default val)"); //перегрузка с вызовом базового метода
 		lim_offer1.set_default();
 		System.out.println("\nlim_offer1\n");
 		System.out.printf("%s", lim_offer1.toString());
@@ -41,22 +41,22 @@ public static boolean isParsable(String s) { //функция для прове�
 		System.out.println("\nWorking with an abstract class\n");
 		payment_cash cash1 = new payment_cash(1);
 		payment_card card1 = new payment_card(2);
-		res1 = cash1.is_accessible();
+		res1 = cash1.is_accessible(); //вызов перегруженной виртуальной функции
 		if(res1 > 0)
 			System.out.println("Cash pay for cash1 is accessible\n");
 		else
 			System.out.println("Cash pay for cash1 is not accessible\n");
-		res2 = card1.is_accessible();
+		res2 = card1.is_accessible(); //вызов перегруженной виртуальной функции
 		if(res2 > 0)
 			System.out.println("Card pay for card1 is accessible\n");
 		else
 			System.out.println("Card pay for card1 is not accessible\n");
 		
-		System.out.println("Working with an interface (bonus num expansion)");
-		sp_offer1.expand_bonus_num();
+		System.out.println("Working with an interface (bonus num expansion)\n");
+		sp_offer1.expand_bonus_num(); //вызов метода интерфейса
 		System.out.println("\nsp_offer1\n");
 		System.out.printf("%s", sp_offer1.toString());
-		lim_offer1.expand_bonus_num();
+		lim_offer1.expand_bonus_num(); //вызов метода интерфейса
 		System.out.println("\nlim_offer1\n");
 		System.out.printf("%s", lim_offer1.toString());
 		
@@ -76,246 +76,12 @@ public static boolean isParsable(String s) { //функция для прове�
 		book4 = (book_store)book5.clone();
 		System.out.println("book4");
 		System.out.printf("%s", book4.toString());
-		book5.spec_offer2.change_bonus_num(10);
-		book5.cash.change_val(3);
+		book5.spec_offer2.change_bonus_num(10); //мелкое клонирование spec_offer (для book4 bonus_num = 10)
+		book5.cash.change_val(3); //глубокое клонирование cash (для book4 is_succeed = 1)
 		System.out.println("book4");
 		System.out.printf("%s", book4.toString());
 		System.out.println("book5");
 		System.out.printf("%s", book5.toString());
-		
-		
-		/*System.out.println("Input information about the 1 book\n"); //ввод информации о книге
-		System.out.printf("Input number of specials: ");
-		n = in.nextInt();
-		special[] spec_offer1 = new special[n]; //одномерный массив
-		for(int i = 0; i < n; i++) //ввод одномерного массива
-		{
-			spec_offer1[i] = new special(); //вызов конструктора без параметров
-			System.out.printf("\nInput number of bonuses for %d special: ", i + 1);
-			x2 = in.nextInt();
-			spec_offer1[i].change_bonus_num(x2);
-			System.out.printf("Input continuation for %d special: ", i + 1);
-			y2 = in.nextInt();
-			spec_offer1[i].change_continuation(y2);
-		}
-		System.out.printf("\nInput title: ");
-		s1 = in.next();
-		System.out.printf("Input author: ");
-		s2 = in.next();
-		System.out.printf("Input genre: ");
-		s3 = in.next();
-		r = 0;
-		while(r == 0) //проверка корректности ввода цены
-		{
-			System.out.printf("Input price: ");
-			r = 1;
-			x1 = in.next();
-			try {
-				if (!isParsable(x1)) //если цена - цифра
-					throw new exceptions(1);
-				x = Integer.parseInt(x1);
-			}
-			catch (exceptions e) {
-				System.out.printf("Incorrect value\n"); //сообщение об ошибке
-				r = 0;
-			}
-			if (r==1)
-			{
-				continue;
-			}
-		}
-		r = 0;
-		while(r == 0) //проверка корректности ввода количества на складе
-		{
-			System.out.printf("Input number in stock: ");
-			r = 1;
-			y1 = in.next();
-			try {
-				if (!isParsable(y1)) //если количество на складе - цифра
-					throw new exceptions(1);
-				y = Integer.parseInt(y1);
-			}
-			catch (exceptions e) {
-				System.out.printf("Incorrect value\n"); //сообщение об ошибке
-				r = 0;
-			}
-			if (r==1)
-			{
-				continue;
-			}
-		}
-		r = 0;
-		while(r == 0) //проверка корректности ввода популярности
-		{
-			System.out.printf("Input popularity: ");
-			r = 1;
-			z1 = in.next();
-			try {
-				if (!isParsable(z1)) //если популярность - цифра
-					throw new exceptions(1);
-				z = Integer.parseInt(z1);
-			}
-			catch (exceptions e) {
-				System.out.printf("Incorrect value\n"); //сообщение об ошибке
-				r = 0;
-			}
-			if (r==1)
-			{
-				continue;
-			}
-		}
-		book_store book1 = new book_store(s1, s2, s3, x, y, z, n, spec_offer1); //вызов конструктора с параметрами
-		book1.get_title();
-		book1.get_author();
-		book1.get_genre();
-		book1.get_price();
-		book1.get_num_stock();
-		book1.get_popularity();
-		book1.output(); //вывод
-		book1.sell(); //продажа
-		book1.output();
-		book1.price_rise(); //повышение цены
-		book1.output();
-		book1.rearrange(); //перестановка
-		book1.output();
-		book1.archivate(); //отправка на склад
-		book1.output();
-		book1.reduce_bonus(); //уменьшение количества бонусов для одномерного массива
-		book1.output();
-		a = book1.predictable_profit();
-		System.out.printf("\nPredictable profit (using func): %d", a); //возврат значения через функцию
-		book1.predictable_profit(res);
-		c=res.value;
-		System.out.printf("\nPredictable profit (using class arg): %d", c);  //возврат значения через дополнительный класс
-		System.out.printf("\n\nLength of the 'genre' (static method): %d\n", book_store.genre_len(book1));  //подсчет длины строки 'жанр' через статический метод
-		book1.space_left = 50;
-		System.out.printf("\nSpace left in the store (static field): %d\n", book1.space_left); //вывод оставшегося места в книжном магазине через статическое поле
-		book1.title_author_compare(); //сравнение автора и названия
-		//Scanner inp = new Scanner(System.in);
-		System.out.println("Input information about the 2 book\n"); //ввод информации о книге
-		System.out.printf("Input number of specials (n and m): ");
-		n = in.nextInt();
-		m = in.nextInt();
-		special[][] spec_offer2 = new special[n][m]; //двумерный массив
-		for(int i = 0; i < n; i++) //ввод двумерного массива
-		{
-			for(int j = 0; j < m; j++)
-			{
-				spec_offer2[i][j] = new special(); //вызов конструктора без параметров
-				System.out.printf("\nInput number of bonuses for [%d][%d] special: ", i + 1, j + 1);
-				x2 = in.nextInt();
-				spec_offer2[i][j].change_bonus_num(x2);
-				System.out.printf("Input continuation for [%d][%d] special: ", i + 1, j + 1);
-				y2 = in.nextInt();
-				spec_offer2[i][j].change_continuation(y2);
-			}
-		}
-		System.out.printf("\nInput title: ");
-		s1 = in.next();
-		System.out.printf("Input author: ");
-		s2 = in.next();
-		System.out.printf("Input genre: ");
-		s3 = in.next();
-		r = 0;
-		while(r == 0) //проверка корректности ввода цены
-		{
-			System.out.printf("Input price: ");
-			r = 1;
-			x1 = in.next();
-			try {
-				if (!isParsable(x1)) //если цена - цифра
-					throw new exceptions(1);
-				x = Integer.parseInt(x1);
-			}
-			catch (exceptions e) {
-				System.out.printf("Incorrect value\n"); //сообщение об ошибке
-				r = 0;
-			}
-			if (r==1)
-			{
-				continue;
-			}
-		}
-		r = 0;
-		while(r == 0) //проверка корректности ввода количества на складе
-		{
-			System.out.printf("Input number in stock: ");
-			r = 1;
-			y1 = in.next();
-			try {
-				if (!isParsable(y1)) //если количество на складе - цифра
-					throw new exceptions(1);
-				y = Integer.parseInt(y1);
-			}
-			catch (exceptions e) {
-				System.out.printf("Incorrect value\n"); //сообщение об ошибке
-				r = 0;
-			}
-			if (r==1)
-			{
-				continue;
-			}
-		}
-		r = 0;
-		while(r == 0) //проверка корректности ввода популярности
-		{
-			System.out.printf("Input popularity: ");
-			r = 1;
-			z1 = in.next();
-			try {
-				if (!isParsable(z1)) //если популярность - цифра
-					throw new exceptions(1);
-				z = Integer.parseInt(z1);
-			}
-			catch (exceptions e) {
-				System.out.printf("Incorrect value\n"); //сообщение об ошибке
-				r = 0;
-			}
-			if (r==1)
-			{
-				continue;
-			}
-		}
-		book_store book2 = new book_store(s1, s2, s3, x, y, z, n, m, spec_offer2); //вызов конструктора с параметрами
-		in.close();
-		book2.get_title();
-		book2.get_author();
-		book2.get_genre();
-		book2.get_price();
-		book2.get_num_stock();
-		book2.get_popularity();
-		book2.output1(); //вывод
-		book2.sell(); //продажа
-		book2.output1();
-		book2.price_rise(); //повышение цены
-		book2.output1();
-		book2.rearrange(); //перестановка
-		book2.output1();
-		book2.archivate(); //отправка на склад
-		book2.output1();
-		book2.reduce_bonus1(); //уменьшение количества бонусов для двумерного массива
-		book2.output1();
-		a = book2.predictable_profit();
-		System.out.printf("\nPredictable profit (using func): %d", a); //возврат значения через функцию
-		book2.predictable_profit(res);
-		c=res.value;
-		System.out.printf("\nPredictable profit (using class arg): %d", c);  //возврат значения через дополнительный класс
-		System.out.printf("\n\nLength of the 'genre' (static method): %d\n", book_store.genre_len(book2));  //подсчет длины строки 'жанр' через статический метод
-		book2.space_left = 50;
-		System.out.printf("\nSpace left in the store (static field): %d\n", book2.space_left); //вывод оставшегося места в книжном магазине через статическое поле
-		book2.title_author_compare(); //сравнение автора и названия
-		
-		special spec_offer3[] = new special[2];
-		System.out.println("\nMassive using constructor with a single parameter\n");
-		for(int i = 0; i < 2; i ++)
-		{
-			spec_offer3[i] = new special(10); //вызов конструктора с одним параметром для создания массива
-		}
-		System.out.println("\nSpecial offers\n");
-		for(int i = 0; i < 2; i ++)
-		{
-			spec_offer3[i].output();
-		}*/
 	}
 }
 

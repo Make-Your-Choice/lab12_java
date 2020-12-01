@@ -1,23 +1,22 @@
-class payment_cash extends payment implements Cloneable {
-	public payment_cash(int a) {
+class payment_cash extends payment implements Cloneable { //наследник абстрактного класса с поддержкой клонирования
+	public payment_cash(int a) { //вызов конструктора базового (супер) класса
 		super(a);
     }
-	public Object clone() {
+	public Object clone() { //клонирование
 		try {
 			return (payment_cash)super.clone();
 		}
 		catch(CloneNotSupportedException e) {
-			 
 		}
 		return this;
 	}
-	public String toString() {
+	public String toString() { //перегрузка toString
 		return "Access code: " + is_succeed + "\n";
 	}
-	public void change_val(int a) {
+	public void change_val(int a) { //изменение кода доступа
 		is_succeed = a;
 	}
-    public int is_accessible() {
+    public int is_accessible() { //перегрузка абстрактной функции
         return is_succeed * 1;
     }
 }
